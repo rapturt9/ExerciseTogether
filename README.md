@@ -1,68 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Inspiration
 
-## Available Scripts
+We know that physical activity and social interaction have immense benefits*. During lockdown, many people aren't able to go to the gym or see any of their friends in person. I wanted to create an app to help people get their endorphins up and see their gym buddies across the world.
 
-In the project directory, you can run:
 
-### `yarn start`
+*https://www.cdc.gov/physicalactivity/basics/pa-health/index.htm, https://www.mercycare.org/bhs/services-programs/eap/resources/health-benefits-of-social-interaction/
+ 
+## What it does
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Exercise Together is a web app that allows 3 people to share video while watching the same Youtube exercise class and log their exercise activity. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+It works like this:
+1. A user visits the website and either creates and account or logs in. Amazon Cognito is used for authentication.
+2. Once authenticated, the user is directed to a dashboard depicting the amount of time spent exercising with Exercise Together.
+3. The user clicks join room and enters a room name. Up to 3 of their friends enter the same name to join the same room.
+4. The users enter a video chat room and can search for a Youtube exercise video together by utilizing the search bar. Once everything is ready, they click start exercise to begin!
+5. When the video ends, the user returns to the dashboard and their time spent exercising is logged.
 
-### `yarn test`
+Exercise Together is helpful when you want to exercise with your friends and simulates an exercise class you could do at the gym like yoga or pilates. This way people can work out with their friends that are all over the world!
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How I built it
 
-### `yarn build`
+I used react and redux to build the front end of the project. For the backend, I used Serverless functionality like Cognito, AWS Lambda, S3, DynamoDB, and App Sync. Cognito verifies the user so that I can log exercise data for every user separately. All data is stored in DynamoDB. When people enter a room, Agora.io livestreams everyone's video to each other, so they can see each other's faces while React is used to display everyone's video. Every change you make to the search bar or clicking a Youtube video is logged to DynamoDB and is logged to all the other clients in the same room through AppSync. As a result, everyone in the room can see the same view at the same time. When you finish the workout, the data is sent to DynamoDB with the email you logged in as the key for the data. On the dashboard, a get request is made back to DynamoDB, so that you can see your exercise data for the whole week.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Challenges I ran into
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+I used a wide variety of services in order to develop the application that I wasn't experienced with previously like Agora.io, AWS Amplify, and AWS AppSync. Learning them was difficult and I went through a lot of troubleshooting with those services in the code. Moreover, syncing all these services together into one application was a large challenge, and I kept trying different pieces of code one at a time to try to get them to work together.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Accomplishments that I'm proud of
 
-### `yarn eject`
+I was able finally learn how to use web sockets (AWS AppSync uses web sockets), which I'm really excited to use for my future projects! Web sockets are especially crucial for online games, which I want to make.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## What I learned
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I learned how to use a multitude of services and link them together. For example, I learned web sockets, Agora.io, AWS Amplify, and AWS Appsync. All these services would be immensely useful for my fire projects, so I believed that I really benefited from creating this project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## What's next for Exercise Together
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Some extensions I'd like to make include:
+- Adding Fitbit and Apple Health functionality so that users who use them can all see data logged onto the website.
+- Making a sidebar like to that people could use to see who is currently online out of their friends list and join a room with them. In order to implement that, I would have to use AWS Neptune, which uses the same technology that Facebook uses for Facebook Friends. 
+- Creating a phone app using React Native. I feel that more people would like to use a phone app rather than the website.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+There are still _many bugs_, especially with the video streaming since I'm using a third party API and a free account for it. For example:
+- The video streaming only works chrome.
+-  Entering the video room with more than one person is a buggy process. The way I get it to work is by duplicating the tab for each user entering and closing the previous tab.
+- The Cognito verification link redirects to localhost, but will confirm the account.
