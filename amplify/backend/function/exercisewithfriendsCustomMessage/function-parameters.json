@@ -1,0 +1,24 @@
+{
+    "trigger": true,
+    "modules": [
+        "verification-link"
+    ],
+    "parentResource": "exercisewithfriends",
+    "functionName": "exercisewithfriendsCustomMessage",
+    "resourceName": "exercisewithfriendsCustomMessage",
+    "parentStack": "auth",
+    "triggerEnvs": [
+        {
+            "key": "RESOURCENAME",
+            "value": "resourceName"
+        }
+    ],
+    "triggerDir": "/usr/local/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/utils/../triggers/CustomMessage",
+    "triggerTemplate": "CustomMessage.json.ejs",
+    "roleName": "exercisewithfriendsCustomMessage",
+    "skipEdit": true,
+    "REDIRECTURL": "http://localhost:3000",
+    "EMAILSUBJECT": "Your verification code",
+    "EMAILMESSAGE": "Click this link to verify your account and start exercising!",
+    "RESOURCENAME": "resourceName"
+}

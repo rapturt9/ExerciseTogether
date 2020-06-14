@@ -1,0 +1,27 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-exercise-dev-163651-authRole",
+            "UnauthRoleArn": "arn:aws:iam::968574679834:role/amplify-exercise-dev-163651-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::968574679834:role/amplify-exercise-dev-163651-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-exercise-dev-163651-deployment",
+            "UnauthRoleName": "amplify-exercise-dev-163651-unauthRole",
+            "StackName": "amplify-exercise-dev-163651",
+            "StackId": "arn:aws:cloudformation:us-east-1:968574679834:stack/amplify-exercise-dev-163651/8150c3c0-ab62-11ea-ad3c-1208f0f76cbf",
+            "AmplifyAppId": "d36e34fcp05v1k"
+        },
+        "categories": {
+            "function": {
+                "exercisewithfriendsCustomMessage": {
+                    "REDIRECTURL": "http://localhost:3000",
+                    "EMAILSUBJECT": "Your verification code",
+                    "EMAILMESSAGE": "Click this link to verify your account and start exercising!"
+                }
+            },
+            "auth": {
+                "exercisewithfriends": {}
+            }
+        }
+    }
+}
